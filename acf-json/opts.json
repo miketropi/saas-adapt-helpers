@@ -1,0 +1,295 @@
+[
+  {
+      "key": "group_651d2c2a660a2",
+      "title": "Saas Adapt Helpers Opts",
+      "fields": [
+          {
+              "key": "field_651d2c2af881b",
+              "label": "General",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "top",
+              "endpoint": 0
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "options_page",
+                  "operator": "==",
+                  "value": "saas-adapt-helpers"
+              }
+          ]
+      ],
+      "menu_order": 0,
+      "position": "normal",
+      "style": "default",
+      "label_placement": "left",
+      "instruction_placement": "field",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "",
+      "show_in_rest": 0
+  },
+  {
+      "key": "group_651e5c597944a",
+      "title": "Saas Adapt Product Meta Fields",
+      "fields": [
+          {
+              "key": "field_651e5c59a82d1",
+              "label": "Company Name",
+              "name": "company_name",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "post_type",
+                  "operator": "==",
+                  "value": "saas-adapt-product"
+              }
+          ]
+      ],
+      "menu_order": 0,
+      "position": "side",
+      "style": "default",
+      "label_placement": "top",
+      "instruction_placement": "label",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "",
+      "show_in_rest": 0
+  },
+  {
+      "key": "group_651e35d055eab",
+      "title": "Saas Adapt Theme Opts",
+      "fields": [
+          {
+              "key": "field_651e35d064bf3",
+              "label": "General",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "top",
+              "endpoint": 0
+          },
+          {
+              "key": "field_651e35e964bf4",
+              "label": "Style",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "top",
+              "endpoint": 0
+          },
+          {
+              "key": "field_651e35f864bf5",
+              "label": "Theme Color",
+              "name": "theme_color",
+              "aria-label": "",
+              "type": "group",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "layout": "block",
+              "sub_fields": [
+                  {
+                      "key": "field_651e360664bf6",
+                      "label": "Primary Color",
+                      "name": "primary_color",
+                      "aria-label": "",
+                      "type": "color_picker",
+                      "instructions": "",
+                      "required": 0,
+                      "conditional_logic": 0,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "#003049",
+                      "enable_opacity": 0,
+                      "return_format": "string"
+                  },
+                  {
+                      "key": "field_651e36a164bf7",
+                      "label": "Primary Color 2",
+                      "name": "primary_color_2",
+                      "aria-label": "",
+                      "type": "color_picker",
+                      "instructions": "",
+                      "required": 0,
+                      "conditional_logic": 0,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "#D62828",
+                      "enable_opacity": 0,
+                      "return_format": "string"
+                  },
+                  {
+                      "key": "field_651e36b464bf8",
+                      "label": "Secondary Color",
+                      "name": "secondary_color",
+                      "aria-label": "",
+                      "type": "color_picker",
+                      "instructions": "",
+                      "required": 0,
+                      "conditional_logic": 0,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "#F77F00",
+                      "enable_opacity": 0,
+                      "return_format": "string"
+                  },
+                  {
+                      "key": "field_651e36c864bf9",
+                      "label": "Secondary Color 2",
+                      "name": "secondary_color_2",
+                      "aria-label": "",
+                      "type": "color_picker",
+                      "instructions": "",
+                      "required": 0,
+                      "conditional_logic": 0,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "#FCBF49",
+                      "enable_opacity": 0,
+                      "return_format": "string"
+                  },
+                  {
+                      "key": "field_651e36d364bfa",
+                      "label": "Secondary Color 3",
+                      "name": "secondary_color_3",
+                      "aria-label": "",
+                      "type": "color_picker",
+                      "instructions": "",
+                      "required": 0,
+                      "conditional_logic": 0,
+                      "wrapper": {
+                          "width": "",
+                          "class": "",
+                          "id": ""
+                      },
+                      "default_value": "#EAE287",
+                      "enable_opacity": 0,
+                      "return_format": "string"
+                  }
+              ]
+          }
+      ],
+      "location": [
+          [
+              {
+                  "param": "options_page",
+                  "operator": "==",
+                  "value": "saas-adapt-theme-opts"
+              }
+          ]
+      ],
+      "menu_order": 0,
+      "position": "normal",
+      "style": "default",
+      "label_placement": "left",
+      "instruction_placement": "field",
+      "hide_on_screen": "",
+      "active": true,
+      "description": "",
+      "show_in_rest": 0
+  },
+  {
+      "key": "ui_options_page_651d2bfe30a98",
+      "title": "Saas Adapt Helpers",
+      "active": true,
+      "menu_order": 0,
+      "page_title": "Saas Adapt Helpers",
+      "menu_slug": "saas-adapt-helpers",
+      "parent_slug": "options-general.php",
+      "advanced_configuration": 0,
+      "icon_url": "",
+      "menu_title": "",
+      "position": "",
+      "redirect": false,
+      "description": "",
+      "update_button": "Update",
+      "updated_message": "Options Updated",
+      "capability": "edit_posts",
+      "data_storage": "options",
+      "post_id": "",
+      "autoload": 0
+  },
+  {
+      "key": "ui_options_page_651e35800041e",
+      "title": "Saas Adapt Theme Opts",
+      "active": true,
+      "menu_order": 0,
+      "page_title": "Saas Adapt Theme Opts",
+      "menu_slug": "saas-adapt-theme-opts",
+      "parent_slug": "none",
+      "advanced_configuration": 1,
+      "icon_url": "dashicons-screenoptions",
+      "menu_title": "",
+      "position": "",
+      "redirect": 0,
+      "description": "",
+      "update_button": "Update",
+      "updated_message": "Options Updated",
+      "capability": "edit_posts",
+      "data_storage": "options",
+      "post_id": "",
+      "autoload": 0
+  }
+]

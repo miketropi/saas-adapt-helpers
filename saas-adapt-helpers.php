@@ -28,6 +28,9 @@ require(SAH_DIR . '/inc/ajax.php');
 require(SAH_DIR . '/inc/template-tag.php');
 require(SAH_DIR . '/inc/hooks.php');
 
+# Admin
+require(SAH_DIR . '/inc/admin/load.php');
+
 /**
  * Boot
  */
