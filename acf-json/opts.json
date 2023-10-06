@@ -19,6 +19,184 @@
               },
               "placement": "top",
               "endpoint": 0
+          },
+          {
+              "key": "field_651f6658d2e06",
+              "label": "Product Listing Page",
+              "name": "",
+              "aria-label": "",
+              "type": "tab",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "placement": "top",
+              "endpoint": 0
+          },
+          {
+              "key": "field_651f6d0b9724f",
+              "label": "Product Listing Page",
+              "name": "sah_product_listing_page",
+              "aria-label": "",
+              "type": "post_object",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "post_type": [
+                  "page"
+              ],
+              "post_status": "",
+              "taxonomy": "",
+              "return_format": "id",
+              "multiple": 0,
+              "allow_null": 0,
+              "bidirectional": 0,
+              "ui": 1,
+              "bidirectional_target": []
+          },
+          {
+              "key": "field_651f6683d2e08",
+              "label": "Heading Page",
+              "name": "sah_heading_page",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": "All Products",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_651f666dd2e07",
+              "label": "Posts Per Page",
+              "name": "sah_posts_per_page",
+              "aria-label": "",
+              "type": "number",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "default_value": 20,
+              "min": "",
+              "max": "",
+              "placeholder": "",
+              "step": "",
+              "prepend": "",
+              "append": ""
+          },
+          {
+              "key": "field_651f66fdd2e09",
+              "label": "Filter Sidebar",
+              "name": "sah_filter_sidebar",
+              "aria-label": "",
+              "type": "true_false",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "Enable filter sidebar",
+              "default_value": 1,
+              "ui_on_text": "",
+              "ui_off_text": "",
+              "ui": 1
+          },
+          {
+              "key": "field_651f6b79e1164",
+              "label": "Search Text",
+              "name": "sah_search_text",
+              "aria-label": "",
+              "type": "true_false",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "Enable Search Text",
+              "default_value": 1,
+              "ui_on_text": "",
+              "ui_off_text": "",
+              "ui": 1
+          },
+          {
+              "key": "field_651f68410edbc",
+              "label": "Sort By",
+              "name": "sah_sort_by",
+              "aria-label": "",
+              "type": "true_false",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "message": "Enable Sort By",
+              "default_value": 1,
+              "ui_on_text": "",
+              "ui_off_text": "",
+              "ui": 1
+          },
+          {
+              "key": "field_651f6765d2e0a",
+              "label": "Products Filter",
+              "name": "sah_products_filter",
+              "aria-label": "",
+              "type": "select",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+              },
+              "choices": {
+                  "Pricing Options": "Pricing Options",
+                  "Features": "Features",
+                  "Deployment": "Deployment",
+                  "Users": "Users"
+              },
+              "default_value": [
+                  "Pricing Options",
+                  "Features",
+                  "Deployment",
+                  "Users"
+              ],
+              "return_format": "value",
+              "multiple": 1,
+              "allow_null": 0,
+              "ui": 1,
+              "ajax": 0,
+              "placeholder": ""
           }
       ],
       "location": [

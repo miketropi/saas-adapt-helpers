@@ -27,7 +27,19 @@ function SAH_product_custom_post_type_register() {
 	register_post_type('saas-adapt-product', $args);
 
   // Features custom tax
+	register_taxonomy('product-pricing-options', ['saas-adapt-product'], [
+    'public'            => false,
+    'hierarchical'      => true,
+		'label'             => __('Pricing Options', 'saas-adapt-helpers'),
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => ['slug' => 'product-pricing-options'],
+  ]);
+
+  // Features custom tax
 	register_taxonomy('product-features', ['saas-adapt-product'], [
+    'public'            => false,
     'hierarchical'      => true,
 		'label'             => __('Features', 'saas-adapt-helpers'),
 		'show_ui'           => true,
@@ -38,6 +50,7 @@ function SAH_product_custom_post_type_register() {
 
   // Deployment custom tax
   register_taxonomy('product-deployment', ['saas-adapt-product'], [
+    'public'            => false,
     'hierarchical'      => true,
 		'label'             => __('Deployment', 'saas-adapt-helpers'),
 		'show_ui'           => true,
@@ -48,6 +61,7 @@ function SAH_product_custom_post_type_register() {
 
   // Users range custom tax
   register_taxonomy('product-users-range', ['saas-adapt-product'], [
+    'public'            => false,
     'hierarchical'      => true,
 		'label'             => __('Users Range', 'saas-adapt-helpers'),
 		'show_ui'           => true,
