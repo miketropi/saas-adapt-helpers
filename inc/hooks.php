@@ -13,3 +13,5 @@ function SAH_product_listing_sidebar() {
 }
 
 add_action('SAH/product-listing-page-content', 'SAH_product_listing_tag');
+
+add_action('SAH/sidebar_inner', 'SAH_sidebar_listing');
