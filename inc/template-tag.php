@@ -28,7 +28,9 @@ function SAH_product_loop_tag($query) {
         <div class="sah-product-item__box">
             <div class="sah-product-item__left">
                 <div class="sah-product-item__feaftured-img">
-                    <img src="<?php echo get_the_post_thumbnail_url();?>" alt="<?php the_title();?>">
+                    <?php if ( has_post_thumbnail() ) {
+                      echo '<img src="'. get_the_post_thumbnail_url() .'" alt="'. get_the_title() .'">';
+                    } ?>
                 </div>
                 <div class="sah-product-item__info">
                     <a href="<?php the_permalink();?>">
@@ -76,6 +78,8 @@ function SAH_sidebar_listing(){
       $terms = get_terms( array(
         'taxonomy' => $taxonomy,
         'hide_empty' => false,
+        'orderby'    => 'ID', 
+        'order'      => 'ASC',
       ) );
 
       if ( !empty($terms) ) {
