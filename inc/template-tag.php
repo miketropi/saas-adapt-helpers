@@ -8,9 +8,6 @@ function SAH_product_listing_tag() {
   $query = SAH_get_products($args);
   ?>
 <div class="sah-product-listing">
-
-    <div class="filter-mobile" id="filterProduct">Filter</div>
-
     <div class="sah-product-listing__items">
         <?php SAH_product_loop_tag($query) ?>
     </div> <!-- .sah-product-listing__items -->
