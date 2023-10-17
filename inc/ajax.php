@@ -4,6 +4,7 @@ function filter_Get_Product(){
     $args = [];
     $args['s'] = $_POST['s'];
     $args['paged'] = $_POST['paged'];
+    $args['sort_by'] = $_POST['sort_by'];
 
     // $keyword = $_POST['s'];
     $query = SAH_get_products($args);

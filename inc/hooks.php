@@ -15,3 +15,25 @@ function SAH_product_listing_sidebar() {
 add_action('SAH/product-listing-page-content', 'SAH_product_listing_tag');
 
 add_action('SAH/sidebar_inner', 'SAH_sidebar_listing');
+
+add_filter('acf/load_field/name=sah_products_filter', function ( $field ) {
+  $result = array();
+
+  // Get all published Gravity Forms
+  $taxonomies = get_taxonomies( [ 'object_type' => [ 'saas-adapt-product' ] ] );
+
+  foreach ( $taxonomies as $taxonomy ) {
+    $taxonomy_details = get_taxonomy( $taxonomy );
+
+    $result[ $taxonomy ] = $taxonomy_details->label;
+  }
+
+  if ( is_array($result) ) {
+      $field['choices'] = array();
+      foreach ( $result as $key => $match ) {
+          $field['choices'][ $key ] = $match;
+      }
+  }
+
+  return $field;
+}, 100);

@@ -18,8 +18,14 @@
   'use strict';
 
   var ready = function ready() {
+    //Keywords
     filterProductByKeyword();
+
+    //Pagination
     filterPaginationProduct();
+
+    //Sort By
+    filterProductBySortBy();
   };
   $(ready);
   var filterProductByKeyword = function filterProductByKeyword() {
@@ -37,15 +43,16 @@
 
     // Search Header Ajax
     $('#searchProductName').keyup(delay(function () {
+      var sortByValue = $('#sortByProductSAH').val();
       if ($(this).val().length == 0) {
         $('#keywordProduct').val('');
-        ajaxFunction(keyword = '', 1);
+        ajaxFunction('', 1, sortByValue);
         return;
       }
       var keyword = $(this).val();
       $('#keywordProduct').val(keyword);
-      ajaxFunction(keyword, 1);
-    }, 500));
+      ajaxFunction(keyword, 1, sortByValue);
+    }, 1000));
   };
   var filterPaginationProduct = function filterPaginationProduct() {
     $(document).on('click', '.sah-paginations .page-numbers', function (e) {
@@ -53,10 +60,19 @@
       var href = $(this).attr('href');
       var page = gup('paged', href);
       var keyword = $('#keywordProduct').val();
-      ajaxFunction(keyword, page);
+      var sortByValue = $('#sortByProductSAH').val();
+      ajaxFunction(keyword, page, sortByValue);
     });
   };
-  function ajaxFunction(keyword, page) {
+  var filterProductBySortBy = function filterProductBySortBy() {
+    $('.sah-product-listing__sortby select[name="filterSortBy"]').on('change', function () {
+      var sortByValue = $(this).val();
+      var keyword = $('#keywordProduct').val();
+      $('#sortByProductSAH').val(sortByValue);
+      ajaxFunction(keyword, 1, sortByValue);
+    });
+  };
+  function ajaxFunction(keyword, page, sort_by) {
     $.ajax({
       url: SAH_PHP_DATA.ajax_url,
       type: 'post',
@@ -64,13 +80,20 @@
       data: {
         'action': 'filter_Get_Product',
         's': keyword,
-        'paged': page
+        'paged': page,
+        'sort_by': sort_by
+      },
+      beforeSend: function beforeSend() {
+        $('.sah-product-item').addClass('skeleton');
       },
       success: function success(data) {
+        $('.sah-product-item').removeClass('skeleton');
+        $('html, body').animate({
+          scrollTop: $(".sah-product-listing-page__inner").offset().top - 80
+        }, 300);
         $('.sah-product-listing__items').html(data.dataProduct);
         $('.sah-paginations').remove();
         $('.sah-product-listing').append(data.dataPagination);
-        console.log(data.message);
       }
     });
   }

@@ -10,7 +10,7 @@
 <div class="sah-product-listing-page">
     
     <input type="hidden" id="keywordProduct">
-    <input type="hidden" id="sortByProduct" value="sponsored">
+    <input type="hidden" id="sortByProductSAH" value="sponsored">
 
     <div class="sah-product-listing-page__inner">
         <?php do_action('SHA/product-listing-page-before-content'); ?>

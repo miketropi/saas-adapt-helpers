@@ -73,7 +73,7 @@ function SAH_get_products($args = []) {
   if(!empty($args['sort_by'])) {
 
     $query_args['meta_query'] = [
-      'relation' => 'OR',
+      // 'relation' => 'OR',
     ];
 
     if ( $args['sort_by'] == 'sponsored' ) {
@@ -97,19 +97,29 @@ function SAH_get_products($args = []) {
     }
 
     if ( $args['sort_by'] == 'most_reviews' ) {
-      array_push( $query_args['meta_query'], [
-        'key' => 'total_rating',
-        'value' => '0',
-        'compare' => '>',
-      ] );
-      $query_args['orderby'] = [
-        'meta_value' => 'ASC',
-      ];
+      $query_args['meta_key'] = 'total_rating';
+      $query_args['meta_value'] = 0;
+      $query_args['meta_compare'] = '>';
+      $query_args['orderby'] = 'meta_value_num';
+      $query_args['order'] = 'DESC';
+      // array_push( $query_args['meta_query'], [
+      //   'key' => 'total_rating',
+      //   'value' => 0,
+      //   'compare' => '>',
+      // ] );
+      // $query_args['orderby'] = [
+      //   'meta_value' => 'DESC',
+      // ];
     }
+
+    if ( $args['sort_by'] == 'alphabetical' ) {
+      $query_args['orderby'] = 'title';
+      $query_args['order'] = 'ASC';
+    }
+
+    // print_r($query_args);
     
   }
-
-  print_r($query_args);
 
 
 

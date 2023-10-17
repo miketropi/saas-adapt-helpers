@@ -5,9 +5,8 @@
 
 function SAH_product_listing_tag() {
   $args = [];
-  $args['sort_by'] = 'most_reviews';
+  $args['sort_by'] = 'sponsored';
   $query = SAH_get_products($args);
-  // print_r($query->found_posts);
   ?>
 <div class="sah-product-listing">
     <div class="sah-product-listing__items">
@@ -46,7 +45,6 @@ function SAH_product_loop_tag($query) {
                           <?php echo sah_rating_render( get_field('rating') , get_field('total_rating') );?>
                       </div>
 
-                      <?php echo get_field('sponsored', get_the_ID() ); ?>
                       <?php } ?>
                   </div>
               </div>
@@ -77,7 +75,10 @@ function SAH_product_loop_tag($query) {
 
 function SAH_sidebar_listing(){
 
-  $taxonomies = get_taxonomies( [ 'object_type' => [ 'saas-adapt-product' ] ] );
+
+  // $taxonomies = get_taxonomies( [ 'object_type' => [ 'saas-adapt-product' ] ] );
+  $taxonomies = get_field('sah_products_filter', 'option');
+
   if ( !empty($taxonomies) ) {
     foreach ($taxonomies as $key => $taxonomy) {
 
@@ -96,7 +97,7 @@ function SAH_sidebar_listing(){
           echo "<h4>". $taxonomy_details->label ."</h4>";
           foreach ($terms as $term) { ?>
             <div class="box">
-                <input type="checkbox" id="<?php echo $term->slug;?>" name="pricing-options"
+                <input type="checkbox" id="<?php echo $term->slug;?>" name="<?php echo $term->slug;?>"
                     value="<?php echo $term->slug;?>">
                 <label for="<?php echo $term->slug;?>"><?php echo $term->name;?></label><br>
             </div>
