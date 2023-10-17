@@ -5,59 +5,71 @@
 
 function SAH_product_listing_tag() {
   $args = [];
+  $args['sort_by'] = 'most_reviews';
   $query = SAH_get_products($args);
+  // print_r($query->found_posts);
   ?>
 <div class="sah-product-listing">
     <div class="sah-product-listing__items">
         <?php SAH_product_loop_tag($query) ?>
     </div> <!-- .sah-product-listing__items -->
-    <?php SAH_paginations_tag($query); ?>
+    <?php SAH_paginations_tag($query, 1); ?>
 </div> <!-- .sah-product-listing -->
 <?php
   wp_reset_postdata();
 }
 
 function SAH_product_loop_tag($query) {
-  while ( $query->have_posts() ) {
-    $query->the_post();
+  if ( $query->have_posts() ) {
+    while ( $query->have_posts() ) {
+      $query->the_post();
+      ?>
+      <div <?php post_class(apply_filters('SAH/product-loop-item-classes-filter', 'sah-product-item')); ?>>
+          <div class="sah-product-item__box">
+              <div class="sah-product-item__left">
+                  <div class="sah-product-item__feaftured-img">
+                      <?php if ( has_post_thumbnail() ) {
+                        echo '<img src="'. get_the_post_thumbnail_url() .'" alt="'. get_the_title() .'">';
+                      } ?>
+                  </div>
+                  <div class="sah-product-item__info">
+                      <a href="<?php the_permalink();?>">
+                          <h3><?php the_title();?></h3>
+                      </a>
+  
+                      <?php if ( !empty(get_field('company_name')) ) { ?>
+                      <div class="company">by <?php echo get_field('company_name');?></div>
+                      <?php } ?>
+  
+                      <?php if ( !empty(get_field('rating')) ) { ?>
+                      <div class="rating">
+                          <?php echo sah_rating_render( get_field('rating') , get_field('total_rating') );?>
+                      </div>
+
+                      <?php echo get_field('sponsored', get_the_ID() ); ?>
+                      <?php } ?>
+                  </div>
+              </div>
+  
+              <div class="sah-product-item__right">
+                  <a href="<?php the_permalink();?>">View Profile</a>
+              </div>
+          </div>
+          <div class="sah-product-item__description">
+              <?php 
+              if( has_excerpt() ){
+                echo wp_trim_words(strip_shortcodes( get_the_excerpt()), 40 );
+              }
+              ?>
+              <a href="<?php the_permalink();?>">Learn more about <?php the_title();?></a>
+          </div>
+      </div>
+      <?php
+    }
+  }else{
     ?>
-    <div <?php post_class(apply_filters('SAH/product-loop-item-classes-filter', 'sah-product-item')); ?>>
-        <div class="sah-product-item__box">
-            <div class="sah-product-item__left">
-                <div class="sah-product-item__feaftured-img">
-                    <?php if ( has_post_thumbnail() ) {
-                      echo '<img src="'. get_the_post_thumbnail_url() .'" alt="'. get_the_title() .'">';
-                    } ?>
-                </div>
-                <div class="sah-product-item__info">
-                    <a href="<?php the_permalink();?>">
-                        <h3><?php the_title();?></h3>
-                    </a>
-
-                    <?php if ( !empty(get_field('company_name')) ) { ?>
-                    <div class="company">by <?php echo get_field('company_name');?></div>
-                    <?php } ?>
-
-                    <?php if ( !empty(get_field('rating')) ) { ?>
-                    <div class="rating">
-                        <?php echo sah_rating_render( get_field('rating') , get_field('total_rating') );?>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-
-            <div class="sah-product-item__right">
-                <a href="<?php the_permalink();?>">View Profile</a>
-            </div>
-        </div>
-        <div class="sah-product-item__description">
-            <?php 
-            if( has_excerpt() ){
-              echo wp_trim_words(strip_shortcodes( get_the_excerpt()), 40 );
-            }
-            ?>
-            <a href="<?php the_permalink();?>">Learn more about <?php the_title();?></a>
-        </div>
+    <div class="not-found-product">
+      <h4>Your filter returned 0 results.</h4>
     </div>
     <?php
   }
@@ -97,15 +109,15 @@ function SAH_sidebar_listing(){
 
 }
 
-function SAH_paginations_tag($query) {
+function SAH_paginations_tag($query, $next_page) {
   ?>
   <div class="sah-paginations">
   <?php
   $big = 999999999; // need an unlikely integer
   echo paginate_links( array(
-    'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+    'base' => site_url() . '%_%',
     'format' => '?paged=%#%',
-    'current' => max( 1, get_query_var('paged') ),
+    'current' => max ( 1, $next_page ),
     'total' => $query->max_num_pages
   ) );
   ?>

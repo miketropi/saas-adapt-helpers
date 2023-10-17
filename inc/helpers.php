@@ -71,8 +71,47 @@ function SAH_get_products($args = []) {
 
   // Order by
   if(!empty($args['sort_by'])) {
-    # ... Sort by here!
+
+    $query_args['meta_query'] = [
+      'relation' => 'OR',
+    ];
+
+    if ( $args['sort_by'] == 'sponsored' ) {
+
+      array_push( $query_args['meta_query'], [
+        'key' => 'sponsored',
+        'value' => '1',
+        'compare'   => '=',
+      ] );
+    }
+
+    if ( $args['sort_by'] == 'highest_rated' ) {
+      array_push( $query_args['meta_query'], [
+        'key' => 'rating',
+        'value' => '0',
+        'compare' => '>',
+      ] );
+      $query_args['orderby'] = [
+        'meta_value' => 'DESC',
+      ];
+    }
+
+    if ( $args['sort_by'] == 'most_reviews' ) {
+      array_push( $query_args['meta_query'], [
+        'key' => 'total_rating',
+        'value' => '0',
+        'compare' => '>',
+      ] );
+      $query_args['orderby'] = [
+        'meta_value' => 'ASC',
+      ];
+    }
+    
   }
+
+  print_r($query_args);
+
+
 
   return new WP_Query(apply_filters('SAH/query_args_products_filter', $query_args, $args));
 }
