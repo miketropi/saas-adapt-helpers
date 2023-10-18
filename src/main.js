@@ -16,6 +16,9 @@
 
       //Sort By
       filterProductBySortBy();
+
+      // Checkbox Terms
+      filterProductByTerms();
     }
   
     $(ready);
@@ -73,7 +76,39 @@
         });
     }
 
-    function ajaxFunction(keyword, page, sort_by){
+    var filterProductByTerms = function() {
+        var keyword = $('#keywordProduct').val();
+        var sortByValue = $('#sortByProductSAH').val();
+
+        $('.sah_checkbox_term').on('change', function() {
+
+            var selectedCheckboxes = $('.sah_checkbox_term:checked');
+            var taxonomyFilters = {};
+
+            selectedCheckboxes.each( function() {
+                var taxonomy = $(this).data('tax');
+                var label = $(this).data('label');
+                var term = $(this).val();
+
+                if (!taxonomyFilters[taxonomy]) {
+                    taxonomyFilters[taxonomy] = [];
+                }
+                if (taxonomyFilters[taxonomy].indexOf(term) === -1) {
+                    taxonomyFilters[taxonomy].push(term);
+                }
+
+            });
+            
+            var filterDataTax = JSON.stringify(taxonomyFilters);
+            
+            $('#filterByTermsSAH').val( filterDataTax );
+            
+            ajaxFunction(keyword, 1, sortByValue, filterDataTax);
+
+        });
+    }
+
+    function ajaxFunction(keyword, page, sort_by, filterDataTax){
         $.ajax({
             url: SAH_PHP_DATA.ajax_url,
             type: 'post',
@@ -83,6 +118,7 @@
               's' : keyword,
               'paged' : page,
               'sort_by' : sort_by,
+              'filter' : filterDataTax
             },
             beforeSend: function() {
                 $('.sah-product-item').addClass('skeleton');

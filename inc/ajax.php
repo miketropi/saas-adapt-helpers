@@ -5,8 +5,8 @@ function filter_Get_Product(){
     $args['s'] = $_POST['s'];
     $args['paged'] = $_POST['paged'];
     $args['sort_by'] = $_POST['sort_by'];
+    $args['filter'] = json_decode( stripslashes($_POST['filter']) , true );
 
-    // $keyword = $_POST['s'];
     $query = SAH_get_products($args);
 
     ob_start();
@@ -18,7 +18,7 @@ function filter_Get_Product(){
     $dataPagination = ob_get_clean();
 
     wp_send_json( array( 
-        'message' => 'sucess', 
+        'message' => $args['filter'], 
         'dataProduct' => $dataProduct,
         'dataPagination' => $dataPagination
     ));

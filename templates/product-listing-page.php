@@ -11,6 +11,7 @@
     
     <input type="hidden" id="keywordProduct">
     <input type="hidden" id="sortByProductSAH" value="sponsored">
+    <input type="hidden" id="filterByTermsSAH">
 
     <div class="sah-product-listing-page__inner">
         <?php do_action('SHA/product-listing-page-before-content'); ?>

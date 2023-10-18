@@ -60,11 +60,11 @@ function SAH_get_products($args = []) {
       'relation' => 'AND',
     ];
 
-    foreach($args['filter'] as $key => $ids) {
+    foreach($args['filter'] as $key => $slug) {
       array_push($query_args['tax_query'], [
         'taxonomy' => $key,
-        'field' => 'term_id',
-        'terms' => explode(',', $ids),
+        'field' => 'slug',
+        'terms' => $slug,
       ]);
     }
   }
@@ -72,28 +72,18 @@ function SAH_get_products($args = []) {
   // Order by
   if(!empty($args['sort_by'])) {
 
-    $query_args['meta_query'] = [
-      // 'relation' => 'OR',
-    ];
-
     if ( $args['sort_by'] == 'sponsored' ) {
-
-      array_push( $query_args['meta_query'], [
-        'key' => 'sponsored',
-        'value' => '1',
-        'compare'   => '=',
-      ] );
+      $query_args['meta_key'] = 'sponsored';
+      $query_args['meta_value'] = '1';
+      $query_args['meta_compare'] = '=';
     }
 
     if ( $args['sort_by'] == 'highest_rated' ) {
-      array_push( $query_args['meta_query'], [
-        'key' => 'rating',
-        'value' => '0',
-        'compare' => '>',
-      ] );
-      $query_args['orderby'] = [
-        'meta_value' => 'DESC',
-      ];
+      $query_args['meta_key'] = 'rating';
+      $query_args['meta_value'] = 0;
+      $query_args['meta_compare'] = '>';
+      $query_args['orderby'] = 'meta_value_num';
+      $query_args['order'] = 'DESC';
     }
 
     if ( $args['sort_by'] == 'most_reviews' ) {
@@ -102,22 +92,12 @@ function SAH_get_products($args = []) {
       $query_args['meta_compare'] = '>';
       $query_args['orderby'] = 'meta_value_num';
       $query_args['order'] = 'DESC';
-      // array_push( $query_args['meta_query'], [
-      //   'key' => 'total_rating',
-      //   'value' => 0,
-      //   'compare' => '>',
-      // ] );
-      // $query_args['orderby'] = [
-      //   'meta_value' => 'DESC',
-      // ];
     }
 
     if ( $args['sort_by'] == 'alphabetical' ) {
       $query_args['orderby'] = 'title';
       $query_args['order'] = 'ASC';
     }
-
-    // print_r($query_args);
     
   }
 

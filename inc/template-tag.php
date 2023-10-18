@@ -6,9 +6,14 @@
 function SAH_product_listing_tag() {
   $args = [];
   $args['sort_by'] = 'sponsored';
+
   $query = SAH_get_products($args);
+
   ?>
 <div class="sah-product-listing">
+
+    <div id="SAH_filter_selected" class="filters-selected"></div>
+
     <div class="sah-product-listing__items">
         <?php SAH_product_loop_tag($query) ?>
     </div> <!-- .sah-product-listing__items -->
@@ -75,8 +80,6 @@ function SAH_product_loop_tag($query) {
 
 function SAH_sidebar_listing(){
 
-
-  // $taxonomies = get_taxonomies( [ 'object_type' => [ 'saas-adapt-product' ] ] );
   $taxonomies = get_field('sah_products_filter', 'option');
 
   if ( !empty($taxonomies) ) {
@@ -97,9 +100,9 @@ function SAH_sidebar_listing(){
           echo "<h4>". $taxonomy_details->label ."</h4>";
           foreach ($terms as $term) { ?>
             <div class="box">
-                <input type="checkbox" id="<?php echo $term->slug;?>" name="<?php echo $term->slug;?>"
+                <input type="checkbox" class="sah_checkbox_term" data-tax="<?php echo $term->taxonomy;?>" data-label="<?php echo $term->name;?>" id="<?php echo $term->slug;?>" name="<?php echo $term->slug;?>"
                     value="<?php echo $term->slug;?>">
-                <label for="<?php echo $term->slug;?>"><?php echo $term->name;?></label><br>
+                <label for="<?php echo $term->slug;?>"><?php echo $term->name;?></label>
             </div>
           <?php }
         echo "</div>";
@@ -122,6 +125,6 @@ function SAH_paginations_tag($query, $next_page) {
     'total' => $query->max_num_pages
   ) );
   ?>
-  </div> <!-- .sah-paginations -->
+  </div>
 <?php
 }
