@@ -16,7 +16,7 @@
   <div class="sah-product-listing__sortby">
     <h4>Sort By:</h4>
     <select name="filterSortBy">
-      <option value="sponsored">Sponsored</option>
+      <option value="sponsored" selected>Sponsored</option>
       <option value="highest_rated">Highest Rated</option>
       <option value="most_reviews">Most Reviews</option>
       <option value="alphabetical">Alphabetical</option>

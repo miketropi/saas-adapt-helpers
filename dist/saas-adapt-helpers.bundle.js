@@ -47,14 +47,15 @@
     // Search Header Ajax
     $('#searchProductName').keyup(delay(function () {
       var sortByValue = $('#sortByProductSAH').val();
+      var valueTerms = $('#filterByTermsSAH').val();
       if ($(this).val().length == 0) {
         $('#keywordProduct').val('');
-        ajaxFunction('', 1, sortByValue);
+        ajaxFunction('', 1, sortByValue, valueTerms);
         return;
       }
       var keyword = $(this).val();
       $('#keywordProduct').val(keyword);
-      ajaxFunction(keyword, 1, sortByValue);
+      ajaxFunction(keyword, 1, sortByValue, valueTerms);
     }, 1000));
   };
   var filterPaginationProduct = function filterPaginationProduct() {
@@ -64,21 +65,44 @@
       var page = gup('paged', href);
       var keyword = $('#keywordProduct').val();
       var sortByValue = $('#sortByProductSAH').val();
-      ajaxFunction(keyword, page, sortByValue);
+      var valueTerms = $('#filterByTermsSAH').val();
+      ajaxFunction(keyword, page, sortByValue, valueTerms);
     });
   };
   var filterProductBySortBy = function filterProductBySortBy() {
     $('.sah-product-listing__sortby select[name="filterSortBy"]').on('change', function () {
       var sortByValue = $(this).val();
       var keyword = $('#keywordProduct').val();
+      var valueTerms = $('#filterByTermsSAH').val();
       $('#sortByProductSAH').val(sortByValue);
-      ajaxFunction(keyword, 1, sortByValue);
+      ajaxFunction(keyword, 1, sortByValue, valueTerms);
     });
   };
   var filterProductByTerms = function filterProductByTerms() {
     var keyword = $('#keywordProduct').val();
     var sortByValue = $('#sortByProductSAH').val();
     $('.sah_checkbox_term').on('change', function () {
+      $('#SAH_filter_selected').html("");
+      $(".sah_checkbox_term").each(function () {
+        if ($(this).is(":checked")) {
+          $('#SAH_filter_selected').append('<div class="item-selected" data-slug="' + $(this).val() + '">' + $(this).data('label') + '<span class="close-btn"></span></div>');
+        }
+      });
+      if ($('#SAH_filter_selected .item-selected').length > 0) {
+        $('#SAH_filter_selected').prepend($('<div class="clear-all">Clear All</div>'));
+      }
+      $('#SAH_filter_selected .item-selected .close-btn').click(function (e) {
+        e.preventDefault();
+        $('input[name="' + $(this).parent().data('slug') + '"]').trigger('click');
+      });
+      $('#SAH_filter_selected .clear-all').click(function (e) {
+        e.preventDefault();
+        $('.sah_checkbox_term:checked').trigger('click');
+        $('#keywordProduct').val('');
+        $('#sortByProductSAH').val('');
+        $('#filterByTermsSAH').val('');
+        $('#searchProductName').val('');
+      });
       var selectedCheckboxes = $('.sah_checkbox_term:checked');
       var taxonomyFilters = {};
       selectedCheckboxes.each(function () {

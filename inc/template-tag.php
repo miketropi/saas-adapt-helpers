@@ -120,10 +120,13 @@ function SAH_paginations_tag($query, $next_page) {
   $big = 999999999; // need an unlikely integer
   echo paginate_links( array(
     'base' => site_url() . '%_%',
+    'mid_size' => 2,
     'format' => '?paged=%#%',
     'current' => max ( 1, $next_page ),
-    'total' => $query->max_num_pages
-  ) );
+    'total' => $query->max_num_pages,
+    'prev_text' => '<svg width="12px" height="12px" viewBox="0 0 1024 1024" class="icon"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="#003049" /></svg>',
+    'next_text' => '<svg width="12px" height="12px" viewBox="0 0 1024 1024" class="icon"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z" fill="#003049" /></svg>',
+    ) );
   ?>
   </div>
 <?php
