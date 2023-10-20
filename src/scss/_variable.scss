@@ -1,0 +1,11 @@
+$screen-tablet-smaller: 992px - 0.02;
+$screen-mobile: 768px - 0.02;
+
+@keyframes wave-squares {
+    0%{
+        background-position: -468px 0;
+    }
+    100%{
+        background-position: 468px 0;
+    }
+  }
