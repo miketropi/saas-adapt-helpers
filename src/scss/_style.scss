@@ -90,6 +90,7 @@ body.admin-bar{
                 font-weight: 400;
                 margin: 8px 0;
                 position: relative;
+                display: none;
                 input{
                     position: absolute;
                     left: 0;
@@ -119,6 +120,34 @@ body.admin-bar{
                         margin-right: 12px;
                     }
                 }
+            }
+            .btn-show-more, .btn-show-less{
+                display: none;
+                color: #1c6fd1;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 125%;
+                margin-top: 16px;
+                cursor: pointer;
+                &.showless:after{
+                    transform: rotate(180deg);
+                }
+                &:after{
+                    content: "";
+                    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNjQuMDAwMDAwcHQiIGhlaWdodD0iNjQuMDAwMDAwcHQiIHZpZXdCb3g9IjAgMCA2NC4wMDAwMDAgNjQuMDAwMDAwIgogcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCI+Cgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCw2NC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiCmZpbGw9IiMxYzZmZDEiIHN0cm9rZT0ibm9uZSI+CjxwYXRoIGQ9Ik0zNCA0NTkgYy04IC0xNCAyNjQgLTI4OSAyODYgLTI4OSAyMiAwIDI5NCAyNzYgMjg1IDI4OSAtMyA2IC0xMSAxMQotMTggMTEgLTYgMCAtNjkgLTU3IC0xMzkgLTEyNyBsLTEyOCAtMTI4IC0xMjggMTI4IGMtNzAgNzAgLTEzMyAxMjcgLTEzOSAxMjcKLTcgMCAtMTUgLTUgLTE5IC0xMXoiLz4KPC9nPgo8L3N2Zz4K");
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    margin-left: 8px;
+                    margin-bottom: -2px;
+                    transition: .3s ease all;
+                }
+            }
+            .btn-show-less:after{
+                transform: rotate(180deg);
             }
         }
         
@@ -328,7 +357,7 @@ body.admin-bar{
                     width: 320px;
                     height: 100vh;
                     overflow-y: auto;
-                    z-index: 9999;
+                    z-index: 100000;
                     background: #ffffff;
                     padding: 20px;
                     box-shadow: 0 5px 10px -5px rgba(0,0,0,.3), 0 20px 25px -5px rgba(0,0,0,.6);
@@ -364,6 +393,7 @@ body.admin-bar{
                     padding-left: 0;
                     h3{
                         margin: 12px 0;
+                        text-align: center;
                     }
                     .rating{
                         justify-content: center;

@@ -105,6 +105,10 @@ function SAH_sidebar_listing(){
                 <label for="<?php echo $term->slug;?>"><?php echo $term->name;?></label>
             </div>
           <?php }
+          ?>
+          <div class="btn-show-more">Show More</div>
+          <div class="btn-show-less">Show Less</div>
+          <?php
         echo "</div>";
       }
 

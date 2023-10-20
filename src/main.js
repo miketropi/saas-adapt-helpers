@@ -22,6 +22,7 @@
 
       //Toggle Sidebar
       toggleSidebar();
+      showLessTermsSidebar();
     }
   
     $(ready);
@@ -159,7 +160,7 @@
                 $('.sah-product-item').removeClass('skeleton');
 
                 $('html, body').animate({
-                    scrollTop: $(".sah-product-listing-page__inner").offset().top - 80
+                    scrollTop: $(".sah-product-listing-page__inner").offset().top - 120
                 }, 300);
 
                 $('.sah-product-listing__items').html(data.dataProduct);
@@ -197,6 +198,43 @@
                 $('.sah-product-listing-page__sidebar').removeClass('active-mb');
             }
         });
+    }
+
+    var showLessTermsSidebar = function (){
+        $('.sah-product-listing-page__sidebar .product-options').each( function() {
+            var productOpts = $(this);
+            var boxOptions = productOpts.find('.box');
+            var shown =  7;
+
+            productOpts.find('.box:lt('+ shown +')').show();
+
+            if ( boxOptions.length > shown ) {
+                productOpts.find('.btn-show-more').show();
+            }
+
+            productOpts.find('.btn-show-more').click( function() {
+
+                shown = productOpts.find('.box:visible').length + 7;
+
+                if ( shown < boxOptions.length ) {
+                    productOpts.find('.box:lt('+ shown +')').slideDown();
+                }else{
+                    productOpts.find('.box:lt('+ boxOptions.length +')').slideDown();
+
+                    productOpts.find('.btn-show-more').hide();
+                    productOpts.find('.btn-show-less').show();
+                }
+
+            });
+
+            productOpts.find('.btn-show-less').click( function() {
+                productOpts.find('.box').not(':lt(7)').slideUp();
+
+                productOpts.find('.btn-show-more').show();
+                productOpts.find('.btn-show-less').hide();
+            });
+            
+        })
     }
   
   })(window, jQuery);  
