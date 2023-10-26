@@ -1,18 +1,23 @@
 body.admin-bar{
-    .sah-product-listing-page .sah-product-listing-page__sidebar .sah-product-listing__sidebar-inner{
-        @media (max-width: $screen-tablet-smaller){
-            top: 32px;
-            height: calc(100vh - 32px);
+    .sah-product-listing-page .sah-product-listing-page__sidebar {
+        .wrap{
+            top: 140px;
         }
-        @media (max-width: 782.98px){
-            top: 46px;
-            height: calc(100vh - 46px);
+        .sah-product-listing__sidebar-inner{
+            @media (max-width: $screen-tablet-smaller){
+                top: 32px;
+                height: calc(100vh - 32px);
+            }
+            @media (max-width: 782.98px){
+                top: 46px;
+                height: calc(100vh - 46px);
+            }
         }
-        
     }
 }
 .sah-product-listing-page{
     max-width: 1200px !important;
+    padding: 48px 0;
     &__inner{
         display: flex;
     }
@@ -20,7 +25,11 @@ body.admin-bar{
     &__sidebar{
         width: 300px;
         padding-right: 24px;
-
+        .wrap{
+            position: sticky;
+            top: 100px;
+            bottom: 24px;
+        }
         h4{
             margin: 0 0 12px 0;
             font-size: 20px;
@@ -337,6 +346,9 @@ body.admin-bar{
             &__sidebar{
                 width: 100%;
                 padding-right: 0;
+                .wrap{
+                    position: inherit;
+                }
                 &.active-mb{
                     .sah-product-listing__sidebar-inner{
                         opacity: 1;
